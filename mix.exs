@@ -3,16 +3,16 @@ defmodule Phoenix_AJAX.Mixfile do
 
   def project do
     [app: :phoenix_ajax,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
       package: [
-        contributors: ["David Kuhta"],
-        maintainers: ["David Kuhta"],
+        contributors: ["David Kuhta", "Jack Tang"],
+        maintainers: ["Jack Tang"],
         licenses: ["MIT"],
-        links: %{github: "https://github.com/davidkuhta/phoenix_ajax"}
+        links: %{github: "https://github.com/jacktang/phoenix_ajax"}
       ],
       description: """
       Phoenix Template Engine supporting AJAX
@@ -38,8 +38,8 @@ defmodule Phoenix_AJAX.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:phoenix, "~> 1.1.4"},
-      {:phoenix_html, "~> 2.5"}
+      {:phoenix, "~> 1.2.1"},
+      {:phoenix_html, "~> 2.6"}
     ]
   end
 end

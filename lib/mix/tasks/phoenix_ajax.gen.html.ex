@@ -39,7 +39,7 @@ defmodule Mix.Tasks.PhoenixAjax.Gen.Html do
     path    = binding[:path]
     route   = String.split(path, "/") |> Enum.drop(-1) |> Kernel.++([plural]) |> Enum.join("/")
     binding = binding ++ [plural: plural, route: route, attrs: attrs,
-                          binary_id: opts[:binary_id],
+                          sample_id: sample_id(opts),
                           inputs: inputs(attrs), params: Mix.Phoenix.params(attrs),
                           template_singular: String.replace(binding[:singular], "_", " "),
                           template_plural: String.replace(plural, "_", " ")]
@@ -52,7 +52,7 @@ defmodule Mix.Tasks.PhoenixAjax.Gen.Html do
       {:eex, "controller_test.exs", "test/controllers/#{path}_controller_test.exs"},
     ]
 
-    generate_templates binding
+    generate_templates(binding)
 
     instructions = """
 
@@ -103,7 +103,7 @@ defmodule Mix.Tasks.PhoenixAjax.Gen.Html do
   defp validate_args!([_, plural | _] = args) do
     cond do
       String.contains?(plural, ":") ->
-        raise_with_help
+        raise_with_help()
       plural != Phoenix.Naming.underscore(plural) ->
         Mix.raise "Expected the second argument, #{inspect plural}, to be all lowercase using snake_case convention"
       true ->
@@ -112,9 +112,10 @@ defmodule Mix.Tasks.PhoenixAjax.Gen.Html do
   end
 
   defp validate_args!(_) do
-    raise_with_help
+    raise_with_help()
   end
 
+  @spec raise_with_help() :: no_return()
   defp raise_with_help do
     Mix.raise """
     mix phoenix_ajax.gen.html expects both singular and plural names

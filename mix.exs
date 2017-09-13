@@ -38,7 +38,7 @@ defmodule Phoenix_AJAX.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:phoenix, "~> 1.2.1"},
+      {:phoenix, "~> 1.3.0"},
       {:phoenix_html, "~> 2.6"}
     ]
   end
